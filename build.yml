@@ -1,0 +1,32 @@
+name: Server
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/*.yml
+      - Containerfile*
+  workflow_dispatch:
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - name: Checkout Push to Registry action
+      uses: actions/checkout@v4
+    - name: Login
+      shell: bash
+      run: |
+        podman login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+    - name: Build
+      shell: bash
+      run: |
+        podman build -f Containerfile -t ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:latest
+    - name: Push
+      shell: bash
+      run: |
+        podman push ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:latest
