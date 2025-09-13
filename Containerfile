@@ -23,7 +23,7 @@ RUN echo "starting" \
 # Cockpit
 RUN echo "starting" \
  && dnf install -y cockpit \
- && systemctl enable --now cockpit.socket \
+ && systemctl enable cockpit.socket \
  && echo "done" 
 
 # Finish
