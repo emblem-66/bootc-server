@@ -1,5 +1,5 @@
-# Currently based on Silverblue image. In future, I am considering using fedora-bootc image.
-FROM quay.io/fedora/fedora-silverblue:latest
+# Based on fedora-bootc image
+FROM quay.io/fedora/fedora-bootc:latest
 
 # Automatic Updates DNF
 RUN echo "starting" \
