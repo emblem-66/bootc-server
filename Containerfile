@@ -18,7 +18,7 @@ RUN echo "" \
  && systemctl enable tailscaled.service sshd.service \
  && dnf autoremove -y \
  && dnf clean all \
- && rm -rf /var/* /var/cache/* /var/log/* /var/lib/dnf/* /tmp/* \
+ && rm -rf /var/* /tmp/* \
  && echo "" 
 
 # Cockpit
@@ -27,11 +27,11 @@ RUN echo "" \
  && systemctl enable cockpit.socket \
  && dnf autoremove -y \
  && dnf clean all \
- && rm -rf /var/* /var/cache/* /var/log/* /var/lib/dnf/* /tmp/* \
+ && rm -rf /var/* /tmp/* \
  && echo "" 
 
 # Finish
 RUN echo "" \
- && rm -rf /var/* /var/cache/* /var/log/* /var/lib/dnf/* /tmp/* \
+ && rm -rf /var/* /tmp/* \
  && ostree container commit \
  && bootc container lint
