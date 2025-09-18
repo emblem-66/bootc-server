@@ -8,7 +8,7 @@ RUN echo "" \
  && sed -i 's|OnUnitInactiveSec=8h|#OnUnitInactiveSec=8h|' /usr/lib/systemd/system/bootc-fetch-apply-updates.timer \
  && sed -i 's|RandomizedDelaySec=2h|#RandomizedDelaySec=2h|' /usr/lib/systemd/system/bootc-fetch-apply-updates.timer \
  && systemctl enable bootc-fetch-apply-updates.timer \
- && echo "" 
+ && echo ""
 
 # Tailscale
 RUN echo "" \
@@ -19,7 +19,7 @@ RUN echo "" \
  && dnf autoremove -y \
  && dnf clean all \
  && rm -rf /var/* /tmp/* \
- && echo "" 
+ && echo ""
 
 # Cockpit
 RUN echo "" \
@@ -28,7 +28,12 @@ RUN echo "" \
  && dnf autoremove -y \
  && dnf clean all \
  && rm -rf /var/* /tmp/* \
- && echo "" 
+ && echo ""
+
+RUN echo "" \
+ && systemctl enable podman-auto-update.timer \
+ && systemctl disable systemd-remount-fs.service \
+ && echo ""
 
 # Finish
 RUN echo "" \
