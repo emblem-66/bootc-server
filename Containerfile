@@ -22,7 +22,7 @@ RUN echo "" \
  && dnf copr enable -y @caddy/caddy \
  && dnf install -y caddy \
 # Freeworld
- && dnf install -y ffmpeg libavcodec-freeworld --allowerasing
+ && dnf install -y ffmpeg libavcodec-freeworld --allowerasing \
 # Jellyfin
  && dnf install -y jellyfin \
  && dnf autoremove -y \
