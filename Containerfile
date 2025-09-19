@@ -16,7 +16,7 @@ RUN echo "" \
  && dnf install -y tailscale \
  && systemctl enable tailscaled.service sshd.service \
 # Cockpit
- && dnf install -y cockpit \
+ && dnf install -y cockpit cockpit-podman \
  && systemctl enable cockpit.socket \
 # Caddy
  && dnf copr enable -y @caddy/caddy \
